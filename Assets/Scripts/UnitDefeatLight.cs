@@ -33,7 +33,7 @@ public class UnitDefeatLight : BaseColour {
             {
                 tParam += Time.deltaTime * fadeTime;
                 var lerpedValue = Mathf.Lerp(maxLight, minLight, tParam);
-                darknessplane.GetComponent<Renderer>().material.SetFloat("_ColourMaxRadius", lerpedValue);
+                greyplane.GetComponent<Renderer>().material.SetFloat("_ColourMaxRadius", lerpedValue);
             }
             tParam = 0;
         }

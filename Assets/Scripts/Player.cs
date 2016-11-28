@@ -2,9 +2,7 @@
 using System.Collections;
 
 public class Player : BaseUnit {
-
-    public float playerSpeed = 5.0f;
-
+    
 
     // Update is called once per frame
     void Update()

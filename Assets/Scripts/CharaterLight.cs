@@ -5,7 +5,7 @@ public class CharaterLight : BaseColour {
 
     private Vector2 velocity = Vector2.zero;
     private float minLight = 1;
-    private float maxLight = 16.4f;
+    private float maxLight = 1;
     private float tParam = 0;
 
 
@@ -15,10 +15,7 @@ public class CharaterLight : BaseColour {
     void Update()
     {
         GreyScale(offsetY);
-
-
-       darknessplane.GetComponent<Renderer>().material.SetFloat("_PColourMaxRadius", 0);
            
-        }
+    }
 
     }

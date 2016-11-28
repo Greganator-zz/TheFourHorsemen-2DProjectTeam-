@@ -1,6 +1,6 @@
 ﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
-Shader "Darkness" {
+Shader "Greyscale" {
 	Properties{
 		_MainTex("Base (RGB) Trans (A)", 2D) = "white" {}
 		_EffectAmount("Effect Amount", Range(0, 1)) = 1.0
@@ -8,8 +8,6 @@ Shader "Darkness" {
 		_ColourMaxRadius("ColourMaxRadius", Float) = 1.0
 		_PColourRadius("PlayerColourRadius", Float) = 1.0
 		_PColourMaxRadius("PlayerColourMaxRadius", Float) = 1.0
-		_OverallTransparancy("OverallTransparancy", Float) = 1.0
-		_MaxTransparancy("MaxTransparancy", Float) = 1.0
 		_ColourR("ColourR", Float) = 0.3
 		_ColourG("ColourG", Float) = 0.59
 		_ColourB("ColourB", Float) = 0.11
@@ -34,8 +32,6 @@ Shader "Darkness" {
 	float _ColourMaxRadius;
 	float _PColourRadius;
 	float _PColourMaxRadius;
-	float _MaxTransparancy;
-	float _OverallTransparancy;
 	float4 _Colour_Death_Zone1;
 	float4 _Colour_Death_Zone2;
 	float4 _Colour_Death_Zone3;
@@ -59,7 +55,6 @@ Shader "Darkness" {
 
 
 	float powerForPos(float4 pos, float2 nearVertex);
-	float areaTransparancy(float4 pos, float2 nearVertex);
 	float playerPos(float4 pos, float2 nearVertex);
 
 
@@ -96,11 +91,6 @@ Shader "Darkness" {
 		return (1.0 / _PColourMaxRadius)*atten / _PColourRadius;
 	}
 
-	float areaTransparancy(float4 pos, float2 nearVertex)
-	{
-		float atten = clamp(_MaxTransparancy - length(pos.xy - nearVertex.xy), 0.0, _MaxTransparancy);
-		return (1.0 / _OverallTransparancy)*atten / _MaxTransparancy;
-	}
 
 	ENDCG
 	}

@@ -8,7 +8,6 @@ public class BaseUnit : MonoBehaviour {
     protected Animator anim;
     protected float raycastDistance = 0.1f;
     protected float raycastOffset = 0.4f;
-    public Transform greayscalePlane;
     public float speed;
 
 
@@ -29,19 +28,41 @@ public class BaseUnit : MonoBehaviour {
         vel.y = verticalInput * speed;
         rb.velocity = vel;
 
-        if (horizontalInput < 0)
+        if (verticalInput == 0)
         {
-            sr.flipX = true;
+            anim.SetBool("BackwardsWalk", false);
+            anim.SetBool("ForwardWalk", false);
+
+            if (horizontalInput < 0)
+            {
+                anim.SetBool("LeftWalk", true);
+                anim.SetBool("RightWalk", false);
+            }
+            if (horizontalInput > 0)
+            {
+                anim.SetBool("LeftWalk", false);
+                anim.SetBool("RightWalk", true);
+            }
         }
-        if (horizontalInput > 0)
+        if(horizontalInput == 0)
         {
-            sr.flipX = false;
+            anim.SetBool("LeftWalk", false);
+            anim.SetBool("RightWalk", false);
+
+            if(verticalInput < 0)
+            {
+                anim.SetBool("BackwardsWalk", false);
+                anim.SetBool("ForwardWalk", true);
+            }
+            if(verticalInput > 0)
+            {
+                anim.SetBool("BackwardsWalk", true);
+                anim.SetBool("ForwardWalk", false);
+            }
+
         }
 
-        //set the animator input of speed to the velocity input of inout
-        //animator will handle transition from idel to run
-        //send the absolute vvalue of input so when we run left it still plays the animation
-        //anim.SetFloat("SpeedHorizontal", Mathf.Abs(horizontalInput));
-        //  anim.SetFloat("SpeedVertical", Mathf.Abs(verticalInput));
+
+        
     }
 }

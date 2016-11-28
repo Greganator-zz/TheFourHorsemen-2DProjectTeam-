@@ -4,8 +4,8 @@ using System.Collections;
 public class BaseColour : MonoBehaviour {
 
     public float offsetY = 0f;
-    public Transform darknessplane;
-    public string lightSource;
+    public Transform greyplane;
+    public string colourSource;
     public Transform target;
 
     public void start()
@@ -17,6 +17,6 @@ public class BaseColour : MonoBehaviour {
         Vector3 origin = new Vector3(0, offsetY, 0);
         origin += target.position;
 
-        darknessplane.GetComponent<Renderer>().material.SetVector(lightSource, origin);
+        greyplane.GetComponent<Renderer>().material.SetVector(colourSource, origin);
     }
 }
